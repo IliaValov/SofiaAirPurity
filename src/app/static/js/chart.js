@@ -66,8 +66,12 @@ window.onload = function() {
 
     function drawChart() {
         $("#errMsg").remove();
+        chartType.disabled = false;
+
         if (!allData || chartData[0].x.length == 0) {
             errMsg();
+            chartConfig.staticPlot = true;
+            chartType.disabled = true;
         }
 
         Plotly.newPlot(myChart, chartData, chartLayout, chartConfig);
