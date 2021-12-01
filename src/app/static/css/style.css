@@ -60,3 +60,22 @@ label {
 .main-svg {
     width: 100%;
 }
+
+.date-slider {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.wrunner__valueNote:last-child {
+    transform: translate(-180%, 0%);
+}
+
+.wrunner__valueNote_theme_default.wrunner__valueNote_direction_vertical::after {
+    top: 20%!important;
+}
+
+.wrunner__valueNote_theme_default.wrunner__valueNote_direction_vertical:last-child::after {
+    left: 100%;
+    transform: rotate(180deg);
+}

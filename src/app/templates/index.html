@@ -12,23 +12,24 @@
         rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
         crossorigin="anonymous">
         <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-        <title></title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/wrunner-default-theme.css') }}">
+        <title>Sofia Air Pollution</title>
     </head>
     
     <body>
         <div class="flex-container">
             <div class="options-container form-group">
                 <div class="option-field">
-                    <label for="chartType">Графика:</label>
-                    <select id="chartType" class="form-select">
+                    <label class="label label-default" for="chartType">Графика:</label>
+                    <select id="chartType" class="form-select btn-secondary">
+                        <option value="scattergl">Скатер сюжет</option>
                         <option value="line">Линейна</option>
                         <option value="bar">Стълбовидна</option>
-                        <option value="scatter">Скатер сюжет</option>
                     </select>
                 </div>
                 <div class="option-field">
                     <label for="station">Станция:</label>
-                    <select id="station" class="form-select">
+                    <select id="station" class="form-select btn-secondary">
                         <option value="1">Дружба</option>
                         <option value="2">Надежда</option>
                         <option value="3">Красно село</option>
@@ -39,7 +40,7 @@
                 </div>
                 <div class="option-field">
                     <label for="airType">Показатели:</label>
-                    <select id="airType" class="form-select">
+                    <select id="airType" class="form-select btn-secondary">
                         <option value="0">PM</option>
                         <option value="1">NO&#x2082;</option>
                         <option value="2">NO</option>
@@ -54,12 +55,14 @@
                         <option value="11">Температура</option>
                     </select>
                 </div>
+                <label for="dateSlider">Период:</label>
+                <div class="date-slider" id="dateSlider"></div>
             </div>
             <div class="chart-container">
                 <div id="myChart"></div>
             </div>
         </div>
         <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
-    </body>
-
+        <script src="{{ url_for('static', filename='js/wrunner-jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/wrunner-native.js') }}"></script>
 </html>

@@ -1,22 +1,23 @@
-from flask import current_app as app, g, session, render_template, redirect, url_for, Blueprint, jsonify
+from flask import current_app as app, g, session, render_template, redirect, url_for, Blueprint, json, request
 import os, random
 from datetime import timedelta, date
+from app.parser.parser import *
+from app.storage.dataStorage import *
 
 main = Blueprint("main", __name__)
 
-@main.route("/")
+@main.route("/", methods=["POST", "GET"])
 def index():
-    return render_template("index.html")
+    if request.method=="POST":
+        pars = Parser(DataStorage().getAirData())
+        rqst = json.loads(request.get_data())
+        data = pars.getDataByStationAndPolluter(int(rqst.get("station")), int(rqst.get("airType")))
 
-# Just testing requests
-@main.route("/data")
-def data():
-    def daterange(date1, date2):
-        for n in range(int ((date2 - date1).days)+1):
-            yield date1 + timedelta(n)
-    labels = [dt.strftime("%Y-%m-%d") for dt in daterange(date(2013,3,9), date(2016,3,5))][1:50]
-    values = [random.randrange(0,100) for x in labels]
-    return jsonify({
-        "labels": labels,
-        "values": values
-        })
+        response = app.response_class(
+            response=json.dumps(data),
+            status=200,
+            mimetype="application/json"
+        )
+        return response 
+
+    return render_template("index.html")
