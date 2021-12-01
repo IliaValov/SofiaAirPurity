@@ -36,7 +36,7 @@ class Parser:
         airDataForStation = {"station": [], "timeSet": [], "level": [], "airType": [], "invalid": []}
         for d in self.data:
             if start <= end and start <= d.timeset and d.timeset <= end:
-                airDataForStation["timeSet"].append(int(d.station))
+                airDataForStation["station"].append(int(d.station))
                 airDataForStation["timeSet"].append(d.timeset)
                 airDataForStation["level"].append(d.level)
                 airDataForStation["airType"].append(int(d.airType))
