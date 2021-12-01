@@ -5,36 +5,50 @@ class Parser:
         self.data = data
 
     def getDataByStation(self, station):
-        airDataForStation = []
+        airDataForStation = {"timeSet": [], "level": [], "airType": [], "invalid": []}
         for d in self.data:
             if int(d.station) == station:
-                airDataForStation.append(d)
+                airDataForStation["timeSet"].append(d.timeset)
+                airDataForStation["level"].append(d.level)
+                airDataForStation["airType"].append(int(d.airType))
+                airDataForStation["invalid"].append(d.isInvalid)
         return airDataForStation
 
-    def getDataByStationAndPoluter(self, station, polluter):
-        airDataForStation = []
+    def getDataByStationAndPolluter(self, station, polluter):
+        airDataForStation = {"timeSet": [], "level": [], "invalid": []}
         for d in self.data:
             if int(d.station) == station and int(d.airType) == polluter:
-                airDataForStation.append(d)
+                airDataForStation["timeSet"].append(d.timeset)
+                airDataForStation["level"].append(d.level)
+                airDataForStation["invalid"].append(d.isInvalid)
         return airDataForStation
 
-    def getDataByStationAndLever(self, station, levelStart, levelEnd):
-        airDataForStation = []
+    def getDataByStationAndLevel(self, station, levelStart, levelEnd):
+        airDataForStation = {"timeSet": [], "level": [], "invalid": []}
         for d in self.data:
             if int(d.station) == station and levelStart <= levelEnd and levelStart <= float(d.level) and float(d.level) <= levelEnd:
-                airDataForStation.append(d)
+                airDataForStation["timeSet"].append(d.timeset)
+                airDataForStation["level"].append(d.level)
+                airDataForStation["invalid"].append(d.isInvalid)
         return airDataForStation
 
     def getDataByTimeSet(self, start, end):
-        airDataForStation = []
+        airDataForStation = {"station": [], "timeSet": [], "level": [], "airType": [], "invalid": []}
         for d in self.data:
             if start <= end and start <= d.timeset and d.timeset <= end:
-                airDataForStation.append(d)
+                airDataForStation["timeSet"].append(int(d.station))
+                airDataForStation["timeSet"].append(d.timeset)
+                airDataForStation["level"].append(d.level)
+                airDataForStation["airType"].append(int(d.airType))
+                airDataForStation["invalid"].append(d.isInvalid)
         return airDataForStation
 
     def getDataByStationAndTimeSet(self, station, start, end):
-        airDataForStation = []
+        airDataForStation = {"timeSet": [], "level": [], "airType": [], "invalid": []}
         for d in self.data:
             if int(d.station) == station and start <= end and start <= d.timeset and d.timeset <= end:
-                airDataForStation.append(d)
+                airDataForStation["timeSet"].append(d.timeset)
+                airDataForStation["level"].append(d.level)
+                airDataForStation["airType"].append(int(d.airType))
+                airDataForStation["invalid"].append(d.isInvalid)
         return airDataForStation
