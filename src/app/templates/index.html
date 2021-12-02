@@ -1,68 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="utf-8">
-        <script src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous">
-        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/wrunner-default-theme.css') }}">
-        <title>Sofia Air Pollution</title>
-    </head>
-    
-    <body>
-        <div class="flex-container">
-            <div class="options-container form-group">
-                <div class="option-field">
-                    <label class="label label-default" for="chartType">Графика:</label>
-                    <select id="chartType" class="form-select btn-secondary">
-                        <option value="scattergl">Скатер сюжет</option>
-                        <option value="line">Линейна</option>
-                        <option value="bar">Стълбовидна</option>
-                    </select>
-                </div>
-                <div class="option-field">
-                    <label for="station">Станция:</label>
-                    <select id="station" class="form-select btn-secondary">
-                        <option value="1">Дружба</option>
-                        <option value="2">Надежда</option>
-                        <option value="3">Красно село</option>
-                        <option value="4">Павлово</option>
-                        <option value="5">Копитото</option>
-                        <option value="6">Младост</option>
-                    </select>
-                </div>
-                <div class="option-field">
-                    <label for="airType">Показатели:</label>
-                    <select id="airType" class="form-select btn-secondary">
-                        <option value="0">PM</option>
-                        <option value="1">NO&#x2082;</option>
-                        <option value="2">NO</option>
-                        <option value="3">C&#x2086;H&#x2086;</option>
-                        <option value="4">CO</option>
-                        <option value="5">O&#x2083;</option>
-                        <option value="6">SO&#x2082;</option>
-                        <option value="7">Влажност</option>
-                        <option value="8">Атмосферно налягане</option>
-                        <option value="9">Вятър</option>
-                        <option value="10">Слънчева радиация</option>
-                        <option value="11">Температура</option>
-                    </select>
-                </div>
-                <label for="dateSlider">Период:</label>
-                <div class="date-slider" id="dateSlider"></div>
-            </div>
-            <div class="chart-container">
-                <div id="myChart"></div>
-            </div>
+{% extends "base.html" %}
+
+{% block links %}
+<style>
+.flex-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+    margin: 20px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="flex-container">
+    <h1>Изберете какви данни бихте искали да видите:</h1>
+    <form action="/" method="POST"> 
+        <div class="button-container">
+            <button type="submit" value="main.charts_range" name="type" class="btn btn-primary btn-lg">Данни в период</button>
+            <button type="submit" value="main.charts_day" name="type" class="btn btn-primary btn-lg">Еднодневни данни</button>
         </div>
-        <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/wrunner-jquery.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/wrunner-native.js') }}"></script>
-</html>
+    </form>
+</div>
+{% endblock %}

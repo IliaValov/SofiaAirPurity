@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wrunner-default-theme.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="flex-container">
+    <div class="options-container form-group">
+        <div class="option-field">
+            <button class="btn btn-primary" onclick="window.location.href='/'">Назад</button>
+        </div>
+        <div class="option-field">
+            <label class="label label-default" for="chartType">Графика:</label>
+            <select id="chartType" class="form-select btn-secondary">
+                <option value="scattergl">Скатер сюжет</option>
+                <option value="line">Линейна</option>
+                <option value="bar">Стълбовидна</option>
+            </select>
+        </div>
+        <div class="option-field">
+            <label for="station">Станция:</label>
+            <select id="station" class="form-select btn-secondary">
+                <option value="1">Дружба</option>
+                <option value="2">Надежда</option>
+                <option value="3">Красно село</option>
+                <option value="4">Павлово</option>
+                <option value="5">Копитото</option>
+                <option value="6">Младост</option>
+            </select>
+        </div>
+        <div class="option-field">
+            <label for="airType">Показатели:</label>
+            <select id="airType" class="form-select btn-secondary">
+                <option value="0" unit="&#x00B5;g/m&#x00B3;">PM</option>
+                <option value="1" unit="&#x00B5;g/m&#x00B3;">NO&#x2082;</option>
+                <option value="2" unit="&#x00B5;g/m&#x00B3;">NO</option>
+                <option value="3" unit="&#x00B5;g/m&#x00B3;">C&#x2086;H&#x2086;</option>
+                <option value="4" unit="mg/m&#x00B3;">CO</option>
+                <option value="5" unit="&#x00B5;g/m&#x00B3;">O&#x2083;</option>
+                <option value="6" unit="&#x00B5;g/m&#x00B3;">SO&#x2082;</option>
+                <option value="7" unit="%">Влажност</option>
+                <option value="8" unit="mbar">Атмосферно налягане</option>
+                <option value="9" unit="m/s">Вятър</option>
+                <option value="10" unit="W/m&#x00B2;">Слънчева радиация</option>
+                <option value="11" unit="&#x00B0;C">Температура</option>
+            </select>
+        </div>
+        <div class="option-field">
+            <label for="datePicker">Дата:</label>
+            <input placeholder="Изберете дата" type="text" id="datePicker" class="form-control">
+        </div>
+    </div>
+    <div class="chart-container">
+        <div id="myChart"></div>
+    </div>
+</div>
+<script src="https://cdn.plot.ly/plotly-2.6.3.min.js"></script>
+<script src="{{ url_for('static', filename='js/chart-day.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wrunner-jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wrunner-native.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+{% endblock %}
