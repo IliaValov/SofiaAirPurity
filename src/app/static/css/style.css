@@ -60,3 +60,35 @@ label {
 .main-svg {
     width: 100%;
 }
+
+.date-slider {
+    display: flex;
+    justify-content: center;
+    margin: 0px 150px;
+}
+
+.wrunner__valueNote {
+    transform: translate(-30%, 0%);
+    white-space: nowrap;
+}
+
+#loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#gif-loading {
+    display: inherit;
+    background-image: url('{{ url_for('static', filename="img/loading.gif") }}');
+}
+
+#datePicker {
+    text-align: center;
+}
